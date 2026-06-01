@@ -1,8 +1,16 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './dialog.style.css';
 
-export function Dialog() {
+export function Dialog({ isOpen, onClose }) {
     const dialogRef = useRef(null);
+
+    useEffect(() => {
+        if (isOpen) {
+            openDialog();
+        } else {
+            closeDialog();
+        }
+    }, [isOpen]);
 
     const openDialog = () => {
         dialogRef.current.showModal();
@@ -15,10 +23,9 @@ export function Dialog() {
         // '//' funciona como uma div
         <>
             <dialog ref={dialogRef}>
-                <button autoFocus onClick={closeDialog}>Close</button>
+                <button autoFocus onClick={onClose}>Close</button>
                 <p>Dialog content goes here.</p>
             </dialog>
-            <button onClick={openDialog}>Show the dialog</button>
         </>
     )
 }
