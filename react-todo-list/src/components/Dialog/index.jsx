@@ -28,6 +28,8 @@ export function Dialog({ isOpen, onClose, children}) {
                     <button autoFocus onClick={onClose} className='btn-close'>
                         <IconClose />
                     </button>
+                </div>
+                <div className='body'>
                     {children}
                 </div>
             </dialog>

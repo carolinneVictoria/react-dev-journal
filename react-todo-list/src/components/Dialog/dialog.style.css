@@ -17,3 +17,6 @@
     border: none;
     cursor: pointer;
 }
+.dialog .body{
+    padding: 10px;
+}
