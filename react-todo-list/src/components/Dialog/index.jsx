@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { Children, useEffect, useRef } from 'react';
 import './dialog.style.css';
+import { IconClose } from '../icons';
 
-export function Dialog({ isOpen, onClose }) {
+export function Dialog({ isOpen, onClose, children}) {
     const dialogRef = useRef(null);
 
     useEffect(() => {
@@ -20,11 +21,15 @@ export function Dialog({ isOpen, onClose }) {
         dialogRef.current.close();
     };
     return (
-        // '//' funciona como uma div
+        // '<> </>' funciona como uma div
         <>
-            <dialog ref={dialogRef}>
-                <button autoFocus onClick={onClose}>Close</button>
-                <p>Dialog content goes here.</p>
+            <dialog ref={dialogRef} className='dialog'>
+                <div className='btn-close-wrapper'>
+                    <button autoFocus onClick={onClose} className='btn-close'>
+                        <IconClose />
+                    </button>
+                    {children}
+                </div>
             </dialog>
         </>
     )
