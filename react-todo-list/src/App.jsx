@@ -65,7 +65,7 @@ function App() {
   }
 
   const addTodo = () => {
-    console.log("Precisamos add um novo TODO");
+    toggleDialog();
   }
 
   return (
