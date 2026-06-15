@@ -1,22 +1,17 @@
 import TodoContext from "./TodoContext";
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
-function TodoProvider({ children }) {
-    const [todos, setTodos] = useState([
-        {
-            id: 1,
-            description: "JSX e componentes",
-            completed: false,
-            createdAt: "2022-10-31"
-        },
-        {
-            id: 2,
-            description: "Controle de inputs e formulários controlados",
-            completed: true,
-            createdAt: "2022-10-31"
-        },
+const TODOS = 'todos';
 
-    ])
+export function TodoProvider({ children }) {
+
+    const savedTodos = localStorage.getItem(TODOS)
+
+    const [todos, setTodos] = useState(savedTodos ? JSON.parse(savedTodos) : [])
+
+    useEffect(() => {
+        localStorage.setItem(TODOS, JSON.stringify(todos))
+    }, [todos])
 
     // Função para adicionar nova task
     const addTodo = (formData) => {
