@@ -8,6 +8,21 @@ export function TodoProvider({ children }) {
     const savedTodos = localStorage.getItem(TODOS)
 
     const [todos, setTodos] = useState(savedTodos ? JSON.parse(savedTodos) : [])
+    const [showDialog, setShowDialog] = useState(false);
+    const [selectedTodo, setSelectedTodo]= useState();
+
+    // Função para alternar a visibilidade do diálogo
+    const openFormTodoDialog = (todo) => {
+        if (todo) {
+            setSelectedTodo(todo);
+        }
+        setShowDialog(true);
+    };
+
+    const closeFormTodoDialog = () => {
+        setShowDialog(false);
+        setSelectedTodo(null);
+    };
 
     useEffect(() => {
         localStorage.setItem(TODOS, JSON.stringify(todos))
@@ -41,6 +56,20 @@ export function TodoProvider({ children }) {
             })
         })
     }
+    // Função para editar uma task
+    const editTodo = (formData) => {
+        setTodos(prevState => {
+            return prevState.map(t => {
+                if (t.id == selectedTodo.id) {
+                    return {
+                        ...t,
+                        description: formData.get('description')
+                    }
+                }
+                return t
+            })
+        })
+    }
 
     // Função para remover uma task
     const deleteTodo = (todo) => {
@@ -54,9 +83,14 @@ export function TodoProvider({ children }) {
             todos,
             addTodo,
             toggleTodoCompleted,
-            deleteTodo
+            deleteTodo,
+            showDialog,
+            openFormTodoDialog,
+            closeFormTodoDialog,
+            selectedTodo,
+            editTodo
         }}
-    >
+        >
             {children}
         </TodoContext>
     )
