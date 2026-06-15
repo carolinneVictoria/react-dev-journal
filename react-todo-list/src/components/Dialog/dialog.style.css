@@ -20,3 +20,6 @@
 .dialog .body{
     padding: 10px;
 }
+.dialog placeholder{
+    color: white;
+}
