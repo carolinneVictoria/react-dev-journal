@@ -1,73 +1,30 @@
-import { useState } from "react"
-import { ChecklistsWrapper } from "./components/ChecklistsWrapper"
-import { Container } from "./components/Container"
-import { Dialog } from "./components/Dialog"
-import { FabButton } from "./components/FabButton"
-import { Footer } from "./components/Footer"
-import { Header } from "./components/Header"
-import { Heading } from "./components/Heading"
-import { IconPlus, IconSchool } from "./components/icons"
-import { SubHeading } from "./components/SubHeading"
-import { ToDoItem } from "./components/ToDoItem"
-import { ToDoList } from "./components/ToDoList"
-import { TextInput } from "./components/TextInput"
-import Button from "./components/Button"
-import ToDoForm from "./components/ToDoForm"
+import { use, useState } from "react";
+import { ChecklistsWrapper } from "./components/ChecklistsWrapper";
+import { Container } from "./components/Container";
+import { Dialog } from "./components/Dialog";
+import { FabButton } from "./components/FabButton";
+import { Footer } from "./components/Footer";
+import { Header } from "./components/Header";
+import { Heading } from "./components/Heading";
+import { IconPlus, IconSchool } from "./components/icons";
+import TodoContext from "./components/TodoProvider/TodoContext";
+import { ToDoGroup } from "./components/ToDoGroup";
+import ToDoForm from "./components/ToDoForm";
 
 function App() {
-
-  const [showDialog, setShowDialog] = useState(false)
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      description: "JSX e componentes",
-      completed: false,
-      createdAt: "2022-10-31"
-    },
-    {
-      id: 2,
-      description: "Controle de inputs e formulários controlados",
-      completed: true,
-      createdAt: "2022-10-31"
-    },
-
-  ])
+  const [showDialog, setShowDialog] = useState(false);
+  const { todos, addTodo } = use(TodoContext)
 
   // Função para alternar a visibilidade do diálogo
   const toggleDialog = () => {
-    setShowDialog(!showDialog)
-  }
+    setShowDialog(!showDialog);
+  };
 
-  // função para adicionar nova task
-  const addTodo = (formData) => {
-    const description = formData.get('description')
-    setTodos(prevState => {
-      const todo = {
-        id: prevState.length + 1,
-        description,
-        completed: false,
-        createdAt:new Date().toISOString()
-      }
-      return [...prevState, todo]
-    })
+  const handleFormSubmit = (formData) => {
+    addTodo(formData)
     toggleDialog()
   }
 
-  // Função para marcar tarefa como concluida
-  const toggleTodoCompleted = (todo) => {
-    setTodos(prevState => {
-      return prevState.map(t => {
-        if (t.id == todo.id){
-          return {
-            ...t,
-            completed: !t.completed
-          }
-        }
-        return t
-      })
-    })
-  }
-  
   return (
     <main>
       <Container>
@@ -77,35 +34,28 @@ function App() {
           </Heading>
         </Header>
         <ChecklistsWrapper>
-          <SubHeading>Para estudar</SubHeading>
+          <ToDoGroup
+            heading="Para Estudar"
+            itens={todos.filter(t => !t.completed)}
+          />
 
-          <ToDoList>
-            {todos.filter(t => !t.completed).map(function (t) {
-              return <ToDoItem key={t.id} item={t} onToggleCompleted={toggleTodoCompleted}/>
-            })}
-          </ToDoList>
-
-          <SubHeading>Concluído</SubHeading>
-
-          <ToDoList>
-            {todos.filter(t => t.completed).map(function (t) {
-              return <ToDoItem key={t.id} item={t} onToggleCompleted={toggleTodoCompleted}/>
-            })}
-          </ToDoList>
+          <ToDoGroup
+            heading="Concluido"
+            itens={todos.filter(t => t.completed)}
+          />
 
           <Footer>
             <Dialog isOpen={showDialog} onClose={toggleDialog}>
-              <ToDoForm onSubmit={addTodo} />
+              <ToDoForm onSubmit={handleFormSubmit} />
             </Dialog>
             <FabButton onClick={toggleDialog}>
               <IconPlus />
             </FabButton>
           </Footer>
-
         </ChecklistsWrapper>
       </Container>
     </main>
-  )
+  );
 }
 
-export default App
+export default App;
