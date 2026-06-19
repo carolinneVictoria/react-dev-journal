@@ -11,6 +11,7 @@ import TodoContext from "./components/TodoProvider/TodoContext";
 import { ToDoGroup } from "./components/ToDoGroup";
 import ToDoForm from "./components/ToDoForm";
 import { EmptyState } from "./components/EmptyState";
+import Pomodoro from "./components/Pomodoro";
 
 function App() {
 
@@ -27,6 +28,19 @@ function App() {
 
   return (
     <main>
+      <Container>
+
+        <Header>
+          <Heading>
+            <IconSchool /> Pomodoro
+          </Heading>
+        </Header>
+        <Pomodoro>
+          
+        </Pomodoro>
+
+      </Container>
+
       <Container>
 
         <Header>
@@ -64,6 +78,9 @@ function App() {
 
         </ChecklistsWrapper>
       </Container>
+
+
+
     </main>
   );
 }
