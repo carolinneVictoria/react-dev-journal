@@ -1,0 +1,25 @@
+:root {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: "Nunito", sans-serif;
+}
+
+body{
+  min-height: 100vh;
+  background: linear-gradient(
+    to bottom right,
+    #fdf2f8,
+    #fff1f2,
+    #fef2f2
+  );
+}
+
+.principal-app {
+  display: flex;
+}
+
+.principal-app > * {
+  width: 50%;
+}
