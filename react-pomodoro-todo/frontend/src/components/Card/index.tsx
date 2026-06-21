@@ -12,7 +12,7 @@ type CardProps = {
     children: ReactNode;
 };
 
-const Card = ({children}: CardProps) => {
+const Card = ({ children }: CardProps) => {
     return (
         <section className={styles.principalcard}>
             {children}
@@ -39,17 +39,17 @@ export const CardPomodoro = () => {
             </div>
 
             <div className={styles.tomatoContainer}>
-                <Tomato time="25:00"/>
+                <Tomato time="25:00" />
             </div>
 
             <div className="btnIniciar">
                 <div className={styles.buttonGroup}>
                     <div className={styles.btniniciar}>
-                        <img src={play} alt="Iniciar"/>
+                        <img src={play} alt="Iniciar" />
                         <button>Iniciar</button>
                     </div>
                     <div className={styles.btnreiniciar}>
-                        <img src={reiniciar} alt="Iniciar"/>
+                        <img src={reiniciar} alt="Iniciar" />
                         <button></button>
                     </div>
                 </div>
@@ -61,7 +61,44 @@ export const CardPomodoro = () => {
 export const CardTodo = () => {
     return (
         <>
+            <div className={styles.text}>
+                <h2>📝 Minhas Tarefas</h2>
+                <button className={styles.adicionarTarefa}>+</button>
+            </div>
 
+            <div className={styles.todoActions}>
+                <button>A fazer (3)</button>
+                <button>Concluidas (2)</button>
+            </div>
+
+            <div className={styles.tarefaContainer}>
+                <div className={styles.tarefas}>
+                    <input type="checkbox" id="js" />
+                    <label>Estudar JavaScript por 50 Minutos</label>
+                </div>
+                <div className={styles.tarefas}>
+                    <input type="checkbox" id="jsx" />
+                    <label>Estudar React por 25 Minutos</label>
+                </div>
+                <div className={styles.tarefas}>
+                    <input type="checkbox" id="jsx" />
+                    <label>Ler um livro</label>
+                </div>
+            </div>
+
+            <hr className={styles.divisor} />
+
+            <div className={styles.progressoContainer}>
+                <h4>3 de 5 concluídas!</h4>
+
+                <div className={styles.progressoInfo}>
+                    <div className={styles.barra}>
+                        <div className={styles.preenchimento}></div>
+                    </div>
+
+                    <span>60%</span>
+                </div>
+            </div>
         </>
     )
 }
