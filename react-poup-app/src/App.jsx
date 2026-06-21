@@ -36,6 +36,33 @@ function App() {
             </Card.Body>
           </Card>
 
+          <Card>
+            <Card.Header>
+              Orçamento Diario Disponivel
+            </Card.Header>
+            <Card.Body>
+              R$ 200
+            </Card.Body>
+          </Card>
+
+          <Card>
+            <Card.Header>
+              Orçamento Diario Disponivel
+            </Card.Header>
+            <Card.Body>
+              R$ 200
+            </Card.Body>
+          </Card>
+
+          <Card>
+            <Card.Header>
+              Orçamento Diario Disponivel
+            </Card.Header>
+            <Card.Body>
+              R$ 200
+            </Card.Body>
+          </Card>
+
         </section>
 
       </Main>
