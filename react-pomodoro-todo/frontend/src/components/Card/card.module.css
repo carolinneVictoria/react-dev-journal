@@ -89,3 +89,135 @@ button {
     width: 25px;
     filter: brightness(0) saturate(100%) invert(12%) sepia(76%) saturate(3627%) hue-rotate(324deg) brightness(86%) contrast(96%);
 }
+.text{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.text h2 {
+    color: #881337;
+    font-size: 1.5rem;
+}
+
+.adicionarTarefa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:  rgb(235, 57, 66);
+    width: 50px;
+    height: 50px;
+    border-radius: 1000px;
+    color: #fff;
+    font-size: 40px;
+}
+
+.todoActions {
+    background-color: #fff1f2;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    height: 40px;
+    border-radius: 25px;
+    gap: 5px;
+}
+
+.todoActions button {
+    background-color: #ffffff;
+    width: 100%;
+    height: 30px;
+    border-radius: 30px;
+    margin: 5px;
+    font-size: 1.125rem;
+    text-align: center;
+    color:#881337;
+}
+
+.todoActions button:active{
+    background-color: #ffeaec;
+    color: #7a0e2f;
+    font-weight: 600;
+}
+
+.tarefaContainer{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.tarefas{
+    background-color: #ffffff;
+    border: #ffeaec 4px solid;
+    height: 45px;
+    border-radius: 25px;
+    color:#881337;
+    font-size: 1.125rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px;
+    gap: 10px;
+}
+
+.tarefas input[type="checkbox"] {
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border: 2px solid #881337;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.tarefas input[type="checkbox"]:checked {
+    background-color: #cf7c95;
+}
+
+.tarefas input[type="checkbox"]:checked::before {
+    content: "✓";
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+
+.divisor{
+    margin-top: 25px;
+    width: 100%;
+    background-color: #ffeaec;
+    height: 4px;
+    border: none;
+}
+
+.progressoContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 155px;
+    color:#881337;
+}
+
+.progressoInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color:#881337;
+}
+
+.barra {
+    width: 150px;
+    height: 10px;
+    background: #ffe4e6;
+    border-radius: 999px;
+}
+
+.preenchimento {
+    width: 60%;
+    height: 100%;
+    background: rgb(235, 57, 66);
+    border-radius: 999px;
+}
