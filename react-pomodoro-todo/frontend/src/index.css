@@ -1,12 +1,11 @@
 :root {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-
   font-family: "Nunito", sans-serif;
 }
 
 body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   min-height: 100vh;
   background: linear-gradient(
     to bottom right,
@@ -14,6 +13,10 @@ body{
     #fff1f2,
     #fef2f2
   );
+}
+
+main{
+  margin-top: 25px;
 }
 
 .principal-app {
