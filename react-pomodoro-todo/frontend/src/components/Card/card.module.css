@@ -1,0 +1,91 @@
+button {
+    all: unset;
+}
+.principalcard {
+    background-color: white;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    margin: 50px 30px;
+    border-radius: 25px;
+    border: rgb(243, 160, 187) 1px solid;
+    padding: 40px;
+    flex-direction: column;
+}
+
+.buttonGroup{
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.btnoption{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 180px;
+    background-color: #ffffff;
+    border: rgb(247, 177, 189) 3px solid;
+    padding: 16px;
+    color: #881337;
+    border-radius: 50px;
+    font-size: 1.125rem;
+}
+
+.btnoption:hover{
+    background-color: #ffeaec;
+}
+
+.btnoption:active{
+    background-color: #da567d;
+    color: #ffffff;
+}
+
+.btnoption img{
+    width: 25px;
+    filter: brightness(0) saturate(100%) invert(12%) sepia(76%) saturate(3627%) hue-rotate(324deg) brightness(86%) contrast(96%);
+}
+
+.btniniciar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100px;
+    background-color: rgb(235, 57, 66);
+    padding: 16px;
+    color: #ffffff;
+    border-radius: 50px;
+    font-size: 1.125rem;
+}
+
+.btniniciar:hover {
+    background-color: rgb(216, 46, 55);
+}
+
+.btniniciar img{
+    width: 25px;
+    filter: brightness(0) invert(1);
+}
+
+.btnreiniciar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background-color: #ffffff;
+    padding: 16px;
+    border-radius: 1000px;
+    border: rgb(247, 177, 189) 3px solid;
+}
+
+.btnreiniciar:hover {
+    background-color: #ffeaec;
+}
+
+.btnreiniciar img{
+    width: 25px;
+    filter: brightness(0) saturate(100%) invert(12%) sepia(76%) saturate(3627%) hue-rotate(324deg) brightness(86%) contrast(96%);
+}
