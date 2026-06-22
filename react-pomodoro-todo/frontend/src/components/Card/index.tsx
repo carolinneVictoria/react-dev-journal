@@ -89,7 +89,7 @@ export const CardTodo = () => {
             <hr className={styles.divisor} />
 
             <div className={styles.progressoContainer}>
-                <h4>3 de 5 concluídas!</h4>
+                <h4>2 de 5 concluídas!</h4>
 
                 <div className={styles.progressoInfo}>
                     <div className={styles.barra}>
