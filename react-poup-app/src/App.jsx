@@ -10,6 +10,7 @@ import { SavingStatus } from './components/SavingsStatus'
 
 import styles from './app.module.css'
 import { Transactions } from './components/Transactions'
+import { Accounts } from './components/Accounts'
 
 
 function App() {
@@ -67,10 +68,10 @@ function App() {
           {/* quarto card */}
             <Card>
               <Card.Header>
-                Orçamento Diario Disponivel
+                Minhas Contas
               </Card.Header>
               <Card.Body>
-                R$ 200
+                <Accounts />
               </Card.Body>
             </Card>
 

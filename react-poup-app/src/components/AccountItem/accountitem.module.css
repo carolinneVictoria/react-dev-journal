@@ -1,0 +1,27 @@
+.account {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.account p {
+    margin: 0;
+    color: var(--neutral-text);
+}
+
+.value {
+    color: var(--neutral-text);
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.details {
+    display: flex;
+    gap: 8px;
+    font-size: 15px;
+    line-height: 120%;
+    font-weight: 500;
+}
