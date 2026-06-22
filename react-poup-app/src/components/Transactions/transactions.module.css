@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     list-style: none;
+    margin-bottom: 48px;
 }
 
 .list li {
@@ -14,4 +15,9 @@
     border: none;
     padding-bottom: 0;
     margin-bottom: 0;
+}
+
+.actions{
+    display: flex;
+    justify-content: center;
 }
