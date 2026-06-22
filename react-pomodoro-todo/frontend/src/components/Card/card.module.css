@@ -3,7 +3,7 @@ button {
 }
 .principalcard {
     background-color: white;
-    height: 500px;
+    height: 550px;
     display: flex;
     align-items: center;
     margin: 50px 30px;
@@ -30,7 +30,7 @@ button {
     padding: 16px;
     color: #881337;
     border-radius: 50px;
-    font-size: 1.125rem;
+    font-size: 1rem;
 }
 
 .btnoption:hover{
@@ -52,7 +52,7 @@ button {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    width: 100px;
+    width: 130px;
     background-color: rgb(235, 57, 66);
     padding: 16px;
     color: #ffffff;
@@ -73,8 +73,8 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    height: 20px;
+    width: 50px;
+    height: 50px;
     background-color: #ffffff;
     padding: 16px;
     border-radius: 1000px;
@@ -89,11 +89,13 @@ button {
     width: 25px;
     filter: brightness(0) saturate(100%) invert(12%) sepia(76%) saturate(3627%) hue-rotate(324deg) brightness(86%) contrast(96%);
 }
+
 .text{
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .text h2 {
