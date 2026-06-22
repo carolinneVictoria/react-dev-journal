@@ -1,13 +1,12 @@
-import logo from "./assets/logo.png"
+import { Aside } from "./components/Aside"
+
 
 function App() {
 
   return (
     <>
       <div className='bg-neutral-background min-h-screen'>
-        <aside>
-          <img src={logo} alt="poupapp" />
-        </aside>
+        <Aside />
       </div>
     </>
   )
