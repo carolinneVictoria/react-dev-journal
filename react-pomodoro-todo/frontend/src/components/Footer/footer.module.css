@@ -2,9 +2,13 @@
     background-color: #f3b3b7;
     color: #881337;
     height: 40px;
-    text-align: center;
     padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.footer h3{
+    font-size: 1rem;
+    text-align: center;
 }
