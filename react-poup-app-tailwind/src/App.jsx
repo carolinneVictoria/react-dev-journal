@@ -1,3 +1,4 @@
+import { Account } from "./components/Account"
 import { Aside } from "./components/Aside"
 import Card from "./components/Card"
 import { Container } from "./components/Container"
@@ -5,6 +6,7 @@ import { DailyBudget } from "./components/DailyBudget"
 import { Main } from "./components/Main"
 import { SavingsStatus } from "./components/SavingsStatus"
 import { SearchInput } from "./components/SearchInput"
+import { Transactions } from "./components/Transactions"
 import { Typography } from "./components/Typography"
 
 
@@ -50,7 +52,7 @@ function App() {
                   Movimentação Financeira
                 </Card.Header>
                 <Card.Body>
-                  200
+                  <Transactions />
                 </Card.Body>
               </Card>
 
@@ -60,7 +62,7 @@ function App() {
                   Minhas Contas
                 </Card.Header>
                 <Card.Body>
-                  200
+                  <Account />
                 </Card.Body>
               </Card>
             </section>
