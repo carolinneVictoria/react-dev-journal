@@ -1,4 +1,5 @@
 import { Aside } from "./components/Aside"
+import { Container } from "./components/Container"
 
 
 function App() {
@@ -6,7 +7,9 @@ function App() {
   return (
     <>
       <div className='bg-neutral-background min-h-screen'>
-        <Aside />
+        <Container>
+          <Aside />
+        </Container>
       </div>
     </>
   )
