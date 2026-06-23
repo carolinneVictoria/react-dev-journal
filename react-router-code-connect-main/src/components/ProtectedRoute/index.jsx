@@ -22,7 +22,5 @@ export const ProtectedRoute = ({ children }) => {
         return null
     }
     
-    return (
-        {children}
-    )
+    return children
 }
