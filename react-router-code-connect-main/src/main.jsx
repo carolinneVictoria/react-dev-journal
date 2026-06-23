@@ -10,16 +10,12 @@ import { BrowserRouter, Route, Routes } from "react-router";
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <Routes path='/auth'>
-        <Route>
-          <Route path='register' element={<Register />} />
-          <Route path='login' element={<Login />} />
-        </Route>
+        <Routes>
+          <Route path='auth/register' element={<Register />} />
+          <Route path='auth/login' element={<Login />} />
 
-        <Route path='/'>
-          <Route path='' element={<Feed />} />
-          <Route path='blog-post' element={<BlogPost />} />
-        </Route>
+          <Route path='/' element={<Feed />} />
+          <Route path='/blog-post' element={<BlogPost />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>
