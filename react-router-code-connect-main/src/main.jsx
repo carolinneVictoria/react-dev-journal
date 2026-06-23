@@ -23,7 +23,7 @@ createRoot(document.getElementById('root')).render(
             </ProtectedRoute>
             } />
 
-          <Route path='/blog-post' element={
+          <Route path='/blog-post/:slug' element={
             <ProtectedRoute>
               <BlogPost />
             </ProtectedRoute>
