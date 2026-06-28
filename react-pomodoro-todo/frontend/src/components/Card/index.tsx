@@ -1,12 +1,15 @@
-import type { ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import styles from "./card.module.css"
 import lua from "./../../public/lua.png"
 import cafe from "./../../public/xicara-de-cafe.png"
 import livro from "./../../public/abra-o-livro.png"
 import reiniciar from "./../../public/reiniciar.png"
 import play from "./../../public/botao-play.png"
+import pause from "./../../public/pause.png"
+import pauseSound from "../../sounds/pause.mp3";
 
 import { Tomato } from "../Tomato"
+import { useTimer, type PomodoroMode } from "../Timer/Timer";
 
 type CardProps = {
     children: ReactNode;
@@ -20,43 +23,70 @@ const Card = ({ children }: CardProps) => {
     )
 }
 
+// liga cada modo do timer ao ícone/legenda correspondente na UI
+const MODE_OPTIONS: { key: PomodoroMode; icon: string; alt: string }[] = [
+    { key: "pomodoro", icon: livro, alt: "Pomodoro" },
+    { key: "short", icon: cafe, alt: "Descanso Curto" },
+    { key: "long", icon: lua, alt: "Descanso Longo" },
+];
+
 export const CardPomodoro = () => {
+    const pauseAudio = useRef(new Audio(pauseSound));
+    
+    useEffect(() => {
+        pauseAudio.current.volume = 0.3;
+    }, []);
+
+    const timer = useTimer({
+        onFinish: () => {
+            pauseAudio.current.currentTime = 0;
+            pauseAudio.current.play();
+            console.log(`Tempo do modo "${timer.modes[timer.mode].label}" acabou!`);
+        },
+    });
+
     return (
         <>
             <div className={styles.buttonGroup}>
-                <div className={styles.btnoption}>
-                    <img src={livro} alt="Pomodoro" />
-                    <button>Pomodoro</button>
-                </div>
-                <div className={styles.btnoption}>
-                    <img src={cafe} alt="descanso curto" />
-                    <button>Descanso Curto</button>
-                </div>
-                <div className={styles.btnoption}>
-                    <img src={lua} alt="descanso longo" />
-                    <button>Descanso Longo</button>
-                </div>
+                {MODE_OPTIONS.map(({ key, icon, alt }) => (
+                    <div
+                        key={key}
+                        className={`${styles.btnoption} ${timer.mode === key ? styles.ativo ?? "" : ""}`}
+                    >
+                        <img src={icon} alt={alt} />
+                        <button onClick={() => timer.changeMode(key)}>
+                            {timer.modes[key].label}
+                        </button>
+                    </div>
+                ))}
             </div>
 
             <div className={styles.tomatoContainer}>
-                <Tomato time="25:00" />
+                <Tomato time={timer.formattedTime} />
             </div>
 
             <div className="btnIniciar">
                 <div className={styles.buttonGroup}>
                     <div className={styles.btniniciar}>
-                        <img src={play} alt="Iniciar" />
-                        <button>Iniciar</button>
+                        <img
+                            src={timer.isRunning ? pause : play}
+                            alt={timer.isRunning ? "Pausar" : "Iniciar"}
+                        />
+                        <button onClick={timer.toggle}>
+                            {timer.isRunning ? "Pausar" : "Iniciar"}
+                        </button>
                     </div>
                     <div className={styles.btnreiniciar}>
-                        <img src={reiniciar} alt="Iniciar" />
-                        <button></button>
+                        <button onClick={timer.reset}>
+                            <img src={reiniciar} alt="Reiniciar" />
+                        </button>
                     </div>
                 </div>
             </div>
         </>
     )
 }
+
 
 export const CardTodo = () => {
     return (
