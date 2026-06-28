@@ -1,5 +1,4 @@
 import Card from "./components/Card"
-import { Footer } from "./components/Footer"
 import { TitleHeader } from "./components/TitleHeader"
 
 function App() {
@@ -18,9 +17,6 @@ function App() {
           <Card.Todo/>
         </Card>
       </section>
-
-      <Footer/>
-
     </main>
     </>
   )

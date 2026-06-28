@@ -24,7 +24,7 @@ button {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    width: 180px;
+    width: 205px;
     background-color: #ffffff;
     border: rgb(247, 177, 189) 3px solid;
     padding: 16px;
@@ -222,4 +222,22 @@ button {
     height: 100%;
     background: rgb(235, 57, 66);
     border-radius: 999px;
+}
+
+@media (max-width: 1400px) {
+    .buttonGroup{
+        gap: 15px;
+    }
+    .btnoption{
+        width: 200px;
+    }
+}
+@media (max-width: 1280px) {
+    .buttonGroup{
+        gap: 10px;
+    }
+    .btnoption{
+        width: 190px;
+        font-size: 15px;
+    }
 }
