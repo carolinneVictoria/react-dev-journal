@@ -1,0 +1,17 @@
+::backdrop {
+    background-color: rgba(0, 0, 0, 0.65);
+}
+
+.dialog {
+    margin: auto;
+    padding: 50px;
+    border: 3px solid #881337;
+    border-radius: 50px;
+    background-color: #ffeaec;
+}
+
+.dialog .body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
