@@ -1,0 +1,23 @@
+.todo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.todo input{
+    width: 300px;
+    padding: 20px;
+    border-radius: 50px;
+    border: 1px solid #881337;
+    text-align: center;
+    font-size: 14px;
+}
+
+.todo button {
+    background-color: #881337;
+    color: white;
+    padding: 15px;
+    border-radius: 25px;
+}
