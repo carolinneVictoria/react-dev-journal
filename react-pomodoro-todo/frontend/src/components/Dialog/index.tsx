@@ -43,12 +43,12 @@ const Dialog = ({ isOpen, onClose, children }: DialogProps) => {
 
     return (
         <dialog ref={dialogRef} className={styles.dialog}>
-            <div className="btn-close-wrapper">
+            <div className={styles.closeWrapper}>
                 <button
                     type="button"
                     autoFocus
                     onClick={onClose}
-                    className="btn-close"
+                    className={styles.btnClose}
                 >
                     <IconClose />
                 </button>
