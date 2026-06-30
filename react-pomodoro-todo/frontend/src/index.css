@@ -8,14 +8,23 @@
   box-sizing: border-box;
 }
 
-body{
+body {
   min-height: 100vh;
-  background: linear-gradient(
-    to bottom right,
-    #fdf2f8,
-    #fff1f2,
-    #fef2f2
-  );
+  margin: 0;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  background: url("./tomatoWallpaper.png") center/cover no-repeat;
+
+  /* filter: blur(2px); */
+  transform: scale(1.05); /* evita bordas brancas */
+
+  z-index: -1;
 }
 
 main{
