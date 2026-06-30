@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
 
-type AddTaskPros = {
+type AddTaskProps = {
     children: ReactNode;
 };
 
-const AddTask = ({ children }: AddTaskPros) => {
+const AddTask = ({ children }: AddTaskProps) => {
     return (
         <section className="section">
             {children}
