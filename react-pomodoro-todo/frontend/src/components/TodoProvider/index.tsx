@@ -56,13 +56,11 @@ const TodoProvider = ({ children }: TodoProps) => {
             )
         );
     };
-    
-    const deleteTodo = () => {
-        if (!selectedTodo) return;
+
+    const deleteTodo = (id: string) => {
         setTodos(prevState =>
-            prevState.filter(todo => todo.id !== selectedTodo.id)
+            prevState.filter(todo => todo.id !== id)
         );
-        closeFormTodoDialog();
     };
 
     const toggleTodoCompleted = (id: string) => {
