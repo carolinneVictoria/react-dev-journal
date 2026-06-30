@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import styles from "./card.module.css";
 import lua from "./../../public/lua.png";
 import cafe from "./../../public/xicara-de-cafe.png";
@@ -11,13 +11,17 @@ import pauseSound from "../../sounds/pause.mp3";
 import { Tomato } from "../Tomato";
 import { useTimer, type PomodoroMode } from "../Timer/Timer";
 import AddTask from "../AddTask";
-import Dialog from "../Dialog";
-import ToDoForm from "../ToDoForm";
+
 // import ToDoForm from "../ToDoForm"; // importe quando existir
 
 type CardProps = {
     children: ReactNode;
 };
+
+type CardTodoProps = {
+    children?: ReactNode;
+    onOpenDialog: () => void
+}
 
 const Card = ({ children }: CardProps) => {
     return (
@@ -90,32 +94,7 @@ export const CardPomodoro = () => {
     );
 };
 
-export const CardTodo = () => {
-    const [showDialog, setShowDialog] = useState(false);
-
-    const openFormTodoDialog = () => {
-        setShowDialog(true);
-    };
-
-    const closeFormTodoDialog = () => {
-        setShowDialog(false);
-    };
-
-    const handleFormSubmit: React.ComponentProps<"form">["onSubmit"] = (
-        event
-    ) => {
-        event?.preventDefault();
-
-        const form = event!.currentTarget;
-        const formData = new FormData(form);
-
-        const description = formData.get("description")?.toString() ?? "";
-
-        console.log(description);
-
-        form.reset();
-        closeFormTodoDialog();
-    };
+export const CardTodo = ({ children, onOpenDialog }: CardTodoProps) => {
 
     return (
         <>
@@ -123,20 +102,12 @@ export const CardTodo = () => {
                 <h2>📝 Minhas Tarefas</h2>
 
                 <AddTask>
-                    <Dialog
-                        isOpen={showDialog}
-                        onClose={closeFormTodoDialog}
-                    >
-                        <ToDoForm
-                            onSubmit={handleFormSubmit}
-                            defaultValue=""
-                        />
-                    </Dialog>
-
+                    {children}
+                    
                     <button
                         className={styles.adicionarTarefa}
                         type="button"
-                        onClick={openFormTodoDialog}
+                        onClick={onOpenDialog}
                     >
                         +
                     </button>
