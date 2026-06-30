@@ -10,8 +10,8 @@ export function ToDoGroup({ itens, heading }) {
         <ToDoList>
             {itens.map(function (t) {
                 return <ToDoItem
-                    key={t.id} 
-                    item={t} 
+                    key={t.id}
+                    item={t}
                 />
             })}
         </ToDoList>
