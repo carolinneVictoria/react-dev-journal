@@ -3,7 +3,7 @@ import TodoContext from "../TodoProvider/TodoContext";
 import type { Todo } from "../../contexts/types";
 import { IconPencil } from "../Icons";
 import styles from "./todoitem.module.css"
-// import { IconPencil, IconTrash } from "../Icons";
+import { IconTrash } from '../Icons/index';
 
 type ToDoItemProps = {
     item: Todo;
@@ -18,7 +18,7 @@ const ToDoItem = ({ item }: ToDoItemProps) => {
 
     const {
         toggleTodoCompleted,
-        // deleteTodo,
+        deleteTodo,
         openFormTodoDialog,
     } = context;
 
@@ -40,7 +40,6 @@ const ToDoItem = ({ item }: ToDoItemProps) => {
                     onChange={() => toggleTodoCompleted(item.id)}
                     type="checkbox"
                     className={styles.checkbox}
-                    defaultChecked={item.completed}
                 />
 
                 <p className={styles.description}>
@@ -53,6 +52,12 @@ const ToDoItem = ({ item }: ToDoItemProps) => {
                         onClick={() => openFormTodoDialog(item)}
                     >
                         <IconPencil />
+                    </button>
+                    <button
+                        className={styles.btn}
+                        onClick={() => deleteTodo(item.id)}
+                    >
+                        <IconTrash />
                     </button>
                 </div>
             </div>
