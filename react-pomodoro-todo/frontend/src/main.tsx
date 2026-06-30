@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.tsx' // ajusta o caminho conforme sua estrutura
+import App from './App.tsx'
 import TodoProvider from './components/TodoProvider/index.tsx'
 
 createRoot(document.getElementById('root')!).render(

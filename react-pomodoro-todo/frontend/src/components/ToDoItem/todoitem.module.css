@@ -13,10 +13,6 @@
     box-shadow: var(--shadow-soft);
 }
 
-.todoItem + .todoItem {
-    border-top: none;
-}
-
 .completed .description {
     text-decoration: line-through;
     color: var(--color-text-muted);
