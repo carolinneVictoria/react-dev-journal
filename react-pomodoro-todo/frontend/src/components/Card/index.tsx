@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import styles from "./card.module.css";
 import lua from "./../../public/lua.png";
@@ -112,8 +113,8 @@ export const CardTodo = () => {
 
     const [filter, setFilter] = useState<"pending" | "completed">("pending");
 
-    const pendingTodos = todos.filter(todo => !todo.completed);
-    const completedTodos = todos.filter(todo => todo.completed);
+    const pendingTodos = todos.filter((todo: { completed: any; }) => !todo.completed);
+    const completedTodos = todos.filter((todo: { completed: any; }) => todo.completed);
 
     const visibleTodos =
         filter === "pending" ? pendingTodos : completedTodos;
