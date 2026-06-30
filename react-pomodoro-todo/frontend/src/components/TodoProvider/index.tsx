@@ -1,18 +1,13 @@
 import { useEffect, useState, type ReactNode } from "react";
+import type { Todo } from "../../contexts/types";
 import TodoContext from "./TodoContext";
+
 
 const TODOS = 'todos';
 
 type TodoProps = {
     children: ReactNode;
 }
-
-type Todo = {
-    id: number;
-    description: string;
-    completed: boolean;
-    createdAt: string;
-};
 
 const TodoProvider = ({ children }: TodoProps) => {
     const [todos, setTodos] = useState<Todo[]>(() => {
@@ -40,10 +35,6 @@ const TodoProvider = ({ children }: TodoProps) => {
         setSelectedTodo(null);
     }
 
-    useEffect(() => {
-        localStorage.setItem(TODOS, JSON.stringify(todos))
-    }, [todos]);
-
     const addTodo = (formData: FormData) => {
         const description = formData.get("description")?.toString() ?? "";
         setTodos(prevState => {
@@ -57,8 +48,18 @@ const TodoProvider = ({ children }: TodoProps) => {
         })
     };
 
+    const editTodo = (formData: FormData) => {
+        const description = formData.get("description")?.toString() ?? "";
+        setTodos(prevState =>
+            prevState.map(todo =>
+                todo.id === selectedTodo?.id ? { ...todo, description } : todo
+            )
+        );
+    };
+    
+
     return (
-        <TodoContext value={{
+        <TodoContext.Provider value={{
             todos,
             addTodo,
             // toggleTodoCompleted,
@@ -67,11 +68,11 @@ const TodoProvider = ({ children }: TodoProps) => {
             openFormTodoDialog,
             closeFormTodoDialog,
             selectedTodo,
-            // editTodo
+            editTodo
         }}
         >
             {children}
-        </TodoContext>
+        </TodoContext.Provider>
     )
 }
 
