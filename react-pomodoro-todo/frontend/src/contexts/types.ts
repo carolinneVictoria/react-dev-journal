@@ -9,7 +9,7 @@ export type TodoContextType = {
     todos: Todo[];
     addTodo: (formData: FormData) => void;
     editTodo: (formData: FormData) => void;
-    deleteTodo: () => void;
+    deleteTodo: (id: string) => void;
     toggleTodoCompleted: (id: string) => void;
     showDialog: boolean;
     openFormTodoDialog: (todo?: Todo) => void;
