@@ -20,7 +20,6 @@ type CardProps = {
 
 type CardTodoProps = {
     children?: ReactNode;
-    onOpenDialog: () => void
 }
 
 const Card = ({ children }: CardProps) => {
@@ -57,9 +56,8 @@ export const CardPomodoro = () => {
                 {MODE_OPTIONS.map(({ key, icon, alt }) => (
                     <div
                         key={key}
-                        className={`${styles.btnoption} ${
-                            timer.mode === key ? styles.ativo : ""
-                        }`}
+                        className={`${styles.btnoption} ${timer.mode === key ? styles.ativo : ""
+                            }`}
                     >
                         <img src={icon} alt={alt} />
                         <button onClick={() => timer.changeMode(key)}>
@@ -94,49 +92,36 @@ export const CardPomodoro = () => {
     );
 };
 
-export const CardTodo = ({ children, onOpenDialog }: CardTodoProps) => {
-
+export const CardAddTask = ({ children }: CardTodoProps) => {
     return (
         <>
             <div className={styles.text}>
                 <h2>📝 Minhas Tarefas</h2>
-
                 <AddTask>
                     {children}
-                    
-                    <button
-                        className={styles.adicionarTarefa}
-                        type="button"
-                        onClick={onOpenDialog}
-                    >
-                        +
-                    </button>
                 </AddTask>
             </div>
+        </>
+    );
+};
 
+export const CardTodo = ({ children }: CardTodoProps) => {
+    return (
+        <>
             <div className={styles.todoActions}>
                 <button>A fazer (3)</button>
                 <button>Concluídas (2)</button>
             </div>
 
             <div className={styles.tarefaContainer}>
-                <div className={styles.tarefas}>
+                {children}
+                {/* <div className={styles.tarefas}>
                     <input type="checkbox" />
                     <label>Estudar JavaScript por 50 minutos</label>
-                </div>
-
-                <div className={styles.tarefas}>
-                    <input type="checkbox" />
-                    <label>Estudar React por 25 minutos</label>
-                </div>
-
-                <div className={styles.tarefas}>
-                    <input type="checkbox" />
-                    <label>Ler um livro</label>
-                </div>
+                </div> */}
             </div>
 
-            <hr className={styles.divisor} />
+            {/* <hr className={styles.divisor} />
 
             <div className={styles.progressoContainer}>
                 <h4>2 de 5 concluídas!</h4>
@@ -148,12 +133,13 @@ export const CardTodo = ({ children, onOpenDialog }: CardTodoProps) => {
 
                     <span>60%</span>
                 </div>
-            </div>
+            </div> */}
         </>
-    );
-};
+    )
+}
 
 Card.Pomodoro = CardPomodoro;
 Card.Todo = CardTodo;
+Card.Add = CardAddTask;
 
 export default Card;
