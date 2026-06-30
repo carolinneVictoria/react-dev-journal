@@ -30,3 +30,15 @@ main{
 .principal-app > * {
   width: 50%;
 }
+
+.adicionarTarefa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:  rgb(235, 57, 66);
+    width: 50px;
+    height: 50px;
+    border-radius: 1000px;
+    color: #fff;
+    font-size: 40px;
+}
