@@ -32,19 +32,6 @@ function App() {
 
         <Header>
           <Heading>
-            <IconSchool /> Pomodoro
-          </Heading>
-        </Header>
-        <Pomodoro>
-          
-        </Pomodoro>
-
-      </Container>
-
-      <Container>
-
-        <Header>
-          <Heading>
             <IconSchool /> Plano de estudos
           </Heading>
         </Header>
