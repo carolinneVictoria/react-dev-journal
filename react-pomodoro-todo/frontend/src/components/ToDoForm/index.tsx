@@ -1,19 +1,18 @@
 import styles from "./to-do-form.module.css";
-import type { FormEventHandler } from "react";
-
 
 type ToDoFormProps = {
-    onSubmit: FormEventHandler<HTMLFormElement>;
+    onSubmit: (formData: FormData) => void;
     defaultValue?: string;
 };
 
-export function ToDoForm({
-    onSubmit,
-    defaultValue,
-}: ToDoFormProps) {
-
+export function ToDoForm({ onSubmit, defaultValue }: ToDoFormProps) {
     return (
-        <form className={styles.todo} onSubmit={onSubmit}>
+        <form
+            className={styles.todo}
+            action={(formData) => {
+                onSubmit(formData);
+            }}
+        >
             <input
                 type="text"
                 name="description"
