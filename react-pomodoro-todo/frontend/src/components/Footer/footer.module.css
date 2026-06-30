@@ -1,18 +1,27 @@
-.footer{
-    background-color: #f3b3b7;
-    color: #881337;
-    height: 40px;
-    padding: 10px;
+.footer {
+    background-color: var(--color-border);
+    color: var(--color-primary);
+    padding: 14px 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
+    position: relative;
     width: 100%;
+    margin-top: 8px;
 }
 
-.footer h3{
-    font-size: 1rem;
+.footer h3 {
+    font-size: 0.9375rem;
+    font-weight: 600;
     text-align: center;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 12px;
+    }
+
+    .footer h3 {
+        font-size: 0.875rem;
+    }
 }

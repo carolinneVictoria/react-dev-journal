@@ -68,7 +68,7 @@ export const CardPomodoro = () => {
             </div>
 
             <div className={styles.tomatoContainer}>
-                <Tomato time={timer.formattedTime} />
+                <Tomato time={timer.formattedTime} isRunning={timer.isRunning} />
             </div>
 
             <div className={styles.buttonGroup}>

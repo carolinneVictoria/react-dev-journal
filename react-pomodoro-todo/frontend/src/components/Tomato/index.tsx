@@ -2,12 +2,13 @@ import styles from './tomato.module.css'
 
 type TomatoProps = {
     time: string;
+    isRunning?: boolean;
 };
 
-export const Tomato = ({time} : TomatoProps) => {
+export const Tomato = ({ time, isRunning = false }: TomatoProps) => {
     return (
-        <div className={styles.tomatoWrapper}>
-            <svg viewBox="0 0 200 200" width="350" height="350">
+        <div className={`${styles.tomatoWrapper} ${isRunning ? styles.running : ''}`}>
+            <svg viewBox="0 0 200 200" width="350" height="350" aria-hidden="true">
                 <circle cx="100" cy="105" r="70" fill="#ff6b6b" />
                 <path
                     d="M 100 35 Q 90 25, 80 30 Q 85 35, 90 38 Q 95 35, 100 35"

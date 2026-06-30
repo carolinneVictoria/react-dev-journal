@@ -1,21 +1,30 @@
 .todoItem {
     list-style: none;
-    padding: 12px 0;
     width: 100%;
+    background-color: var(--color-bg-card);
+    border: 2px solid var(--color-border);
+    border-radius: 16px;
+    padding: 14px 16px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.todoItem:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow-soft);
 }
 
 .todoItem + .todoItem {
-    border-top: 1px solid #ffeaec;
+    border-top: none;
 }
 
 .completed .description {
     text-decoration: line-through;
-    color: #8f8f8f;
+    color: var(--color-text-muted);
 }
 
 .date {
     font-size: 12px;
-    color: #881337;
+    color: var(--color-text-muted);
     margin-bottom: 8px;
 }
 
@@ -29,14 +38,28 @@
     appearance: none;
     width: 22px;
     height: 22px;
-    border: 2px solid #881337;
+    border: 2px solid var(--color-primary);
     border-radius: 50%;
     cursor: pointer;
     flex-shrink: 0;
+    transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .checkbox:checked {
     background-color: #cf7c95;
+    animation: checkboxPop 0.3s ease;
+}
+
+@keyframes checkboxPop {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 .checkbox:checked::before {
@@ -53,6 +76,8 @@
     flex: 1;
     margin: 0;
     word-break: break-word;
+    color: var(--color-primary);
+    font-weight: 600;
 }
 
 .actions {
@@ -68,8 +93,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .btn:hover {
-    opacity: .7;
+    opacity: 0.7;
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .todoItem {
+        padding: 12px 14px;
+    }
+
+    .description {
+        font-size: 0.9375rem;
+    }
 }

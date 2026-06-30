@@ -8,6 +8,14 @@ type ToDoGroupProps = {
 }
 
 const ToDoGroup = ({ itens }: ToDoGroupProps) => {
+    if (itens.length === 0) {
+        return (
+            <p className={styles.emptyState}>
+                Nenhuma tarefa por aqui... adicione uma! ✨
+            </p>
+        );
+    }
+
     return (
         <div className={styles.tarefasContainer}>
             <ToDoList>
