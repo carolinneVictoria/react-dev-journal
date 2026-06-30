@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import styles from "./card.module.css";
 import lua from "./../../public/lua.png";
 import cafe from "./../../public/xicara-de-cafe.png";
@@ -11,6 +11,8 @@ import pauseSound from "../../sounds/pause.mp3";
 import { Tomato } from "../Tomato";
 import { useTimer, type PomodoroMode } from "../Timer/Timer";
 import AddTask from "../AddTask";
+import ToDoGroup from "../ToDoGroup";
+import { useTodo } from "../../hooks/useTodo";
 
 // import ToDoForm from "../ToDoForm"; // importe quando existir
 
@@ -105,38 +107,66 @@ export const CardAddTask = ({ children }: CardTodoProps) => {
     );
 };
 
-export const CardTodo = ({ children }: CardTodoProps) => {
+export const CardTodo = () => {
+    const { todos } = useTodo();
+
+    const [filter, setFilter] = useState<"pending" | "completed">("pending");
+
+    const pendingTodos = todos.filter(todo => !todo.completed);
+    const completedTodos = todos.filter(todo => todo.completed);
+
+    const visibleTodos =
+        filter === "pending" ? pendingTodos : completedTodos;
+
+    const totalTodos = todos.length;
+    const completedCount = completedTodos.length;
+
+    const progress =
+        totalTodos === 0 ? 0 : (completedCount / totalTodos) * 100;
+
     return (
         <>
             <div className={styles.todoActions}>
-                <button>A fazer (3)</button>
-                <button>Concluídas (2)</button>
+                <button
+                    onClick={() => setFilter("pending")}
+                    className={filter === "pending" ? styles.active : ""}
+                >
+                    A fazer ({pendingTodos.length})
+                </button>
+
+                <button
+                    onClick={() => setFilter("completed")}
+                    className={filter === "completed" ? styles.active : ""}
+                >
+                    Concluídas ({completedTodos.length})
+                </button>
             </div>
 
             <div className={styles.tarefaContainer}>
-                {children}
-                {/* <div className={styles.tarefas}>
-                    <input type="checkbox" />
-                    <label>Estudar JavaScript por 50 minutos</label>
-                </div> */}
+                <ToDoGroup todos={visibleTodos} />
             </div>
 
-            {/* <hr className={styles.divisor} />
+            <hr className={styles.divisor} />
 
             <div className={styles.progressoContainer}>
-                <h4>2 de 5 concluídas!</h4>
+                <h4>
+                    {completedCount} de {totalTodos} concluídas!
+                </h4>
 
                 <div className={styles.progressoInfo}>
                     <div className={styles.barra}>
-                        <div className={styles.preenchimento}></div>
+                        <div
+                            className={styles.preenchimento}
+                            style={{ width: `${progress}%` }}
+                        />
                     </div>
 
-                    <span>60%</span>
+                    <span>{Math.round(progress)}%</span>
                 </div>
-            </div> */}
+            </div>
         </>
-    )
-}
+    );
+};
 
 Card.Pomodoro = CardPomodoro;
 Card.Todo = CardTodo;

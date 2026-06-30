@@ -39,7 +39,7 @@ const TodoProvider = ({ children }: TodoProps) => {
         const description = formData.get("description")?.toString() ?? "";
         setTodos(prevState => {
             const todo: Todo = {
-                id: prevState.length + 1,
+                id: crypto.randomUUID(),
                 description,
                 completed: false,
                 createdAt: new Date().toISOString()
@@ -57,13 +57,30 @@ const TodoProvider = ({ children }: TodoProps) => {
         );
     };
     
+    const deleteTodo = () => {
+        if (!selectedTodo) return;
+        setTodos(prevState =>
+            prevState.filter(todo => todo.id !== selectedTodo.id)
+        );
+        closeFormTodoDialog();
+    };
+
+    const toggleTodoCompleted = (id: string) => {
+        setTodos(prevState =>
+            prevState.map(todo =>
+                todo.id === id
+                    ? { ...todo, completed: !todo.completed }
+                    : todo
+            )
+        );
+    };
 
     return (
         <TodoContext.Provider value={{
             todos,
             addTodo,
-            // toggleTodoCompleted,
-            // deleteTodo,
+            toggleTodoCompleted,
+            deleteTodo,
             showDialog,
             openFormTodoDialog,
             closeFormTodoDialog,

@@ -17,7 +17,7 @@ const ToDoItem = ({ item }: ToDoItemProps) => {
     }
 
     const {
-        // toggleTodoCompleted,
+        toggleTodoCompleted,
         // deleteTodo,
         openFormTodoDialog,
     } = context;
@@ -36,6 +36,8 @@ const ToDoItem = ({ item }: ToDoItemProps) => {
 
             <div className={styles.details}>
                 <input
+                    checked={item.completed}
+                    onChange={() => toggleTodoCompleted(item.id)}
                     type="checkbox"
                     className={styles.checkbox}
                     defaultChecked={item.completed}
