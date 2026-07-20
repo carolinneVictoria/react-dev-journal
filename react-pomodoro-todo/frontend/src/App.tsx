@@ -5,7 +5,6 @@ import { Footer } from "./components/Footer"
 import Dialog from "./components/Dialog";
 import ToDoForm from "./components/ToDoForm";
 import TodoContext from "./components/TodoProvider/TodoContext";
-import ToDoGroup from "./components/ToDoGroup";
 
 function App() {
   const context = use(TodoContext);
@@ -14,7 +13,7 @@ function App() {
     throw new Error("TodoContext deve ser usado dentro de um TodoProvider");
   }
 
-  const { todos, addTodo, showDialog, openFormTodoDialog, closeFormTodoDialog, selectedTodo, editTodo } = context;
+  const { addTodo, showDialog, openFormTodoDialog, closeFormTodoDialog, selectedTodo, editTodo } = context;
 
   const handleFormSubmit = (formData: FormData) => {
     if (selectedTodo) {
@@ -51,11 +50,7 @@ function App() {
               </button>
             </Card.Add>
 
-            <Card.Todo>
-              <ToDoGroup
-                itens={todos.filter(t => !t.completed)}
-              />
-            </Card.Todo>
+            <Card.Todo/>
           </Card>
         </section>
       </main>
