@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router"
-import { ProtectedRoute } from "../components/ProtectedRoute"
 import { Feed } from "../pages/Feed"
 import { BlogPost } from "../pages/BlogPost"
 import { Register } from "../pages/Register"
@@ -15,15 +14,11 @@ export const AppRouter = () => {
                 <Route path='/auth/logout' element={<Logout />} />
 
                 <Route path='/' element={
-                    <ProtectedRoute>
-                        <Feed />
-                    </ProtectedRoute>
+                    <Feed />
                 } />
 
                 <Route path='/blog-post/:slug' element={
-                    <ProtectedRoute>
-                        <BlogPost />
-                    </ProtectedRoute>
+                    <BlogPost />
                 } />
             </Routes>
         </BrowserRouter>
