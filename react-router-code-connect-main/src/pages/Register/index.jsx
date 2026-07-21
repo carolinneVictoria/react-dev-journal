@@ -28,7 +28,7 @@ export const Register = () => {
         const password = formData.get('password')
 
         const response = await register(name, email, password)
-
+        
         if (response.success){
             navigate('/auth/login')
         } else {
