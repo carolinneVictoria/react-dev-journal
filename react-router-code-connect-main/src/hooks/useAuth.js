@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export const useAuth = () => {
   const [user, setUser] = useState(null)
@@ -64,7 +64,7 @@ export const useAuth = () => {
 
       setUser(data.user)
       localStorage.setItem('auth_user', JSON.stringify(data.user))
-      localStorage.setItem('access_token', JSON.stringify(data.access_token))
+      localStorage.setItem('access_token', data.access_token)
 
       return { success: true, user }
     } catch (error) {
