@@ -22,6 +22,16 @@ export const BlogPost = () => {
         setComments([comments, ...comments]);
     };
 
+    const handleDelete = (commentId) => {
+        const isConfirmed = confirm('Tem certeza que deseja remover o comentário?')
+        if (isConfirmed) {
+            http.delete(`comments/${commentId}`)
+                .then(() => {
+                    setComments(oldState => oldState.filter(c => c.id != commentId))
+                })
+        }
+    }
+
     useEffect(() => {
         http.get(`blog-posts/slug/${slug}`)
             .then(response => {
@@ -29,10 +39,11 @@ export const BlogPost = () => {
                 setComments(response.data.comments)
             })
             .catch(error => {
-                if (error.status == 404){
+                if (error.status == 404) {
                     navigate('/not-found')
                 }
             })
+
     }, [slug, navigate])
 
     if (!post) {
@@ -64,7 +75,7 @@ export const BlogPost = () => {
                                 </p>
                             </div>
                             <div className={styles.action}>
-                                <ModalComment onSuccess={handleNewComment} postId={post?.id}/>
+                                <ModalComment onSuccess={handleNewComment} postId={post?.id} />
                                 <p>
                                     {comments.length}
                                 </p>
@@ -79,7 +90,7 @@ export const BlogPost = () => {
                         {post.markdown}
                     </ReactMarkdown>
                 </div>
-                <CommentList comments={comments} />
+                <CommentList comments={comments} onDelete={handleDelete} />
             </main>
         </AppLayout>
     )
