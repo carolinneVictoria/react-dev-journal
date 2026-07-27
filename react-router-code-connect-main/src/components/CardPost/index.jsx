@@ -10,7 +10,6 @@ import { useAuth } from "../../hooks/useAuth";
 
 export const CardPost = ({ post }) => {
     const [likes, setLikes] = useState(post.likes);
-    // eslint-disable-next-line no-unused-vars
     const [comments, setComments] = useState(post.comments);
     const {isAuthenticated} = useAuth()
 
@@ -56,7 +55,7 @@ export const CardPost = ({ post }) => {
                     </div>
                     <div className={styles.action}>
                         <ModalComment onSuccess={handleNewComment} postId={post.id} />
-                        <p>{post.comments.length}</p>
+                        <p>{comments.length}</p>
                     </div>
                 </div>
                 <Author author={post.author} />
