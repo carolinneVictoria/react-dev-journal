@@ -4,22 +4,36 @@ import { ModalComment } from "../ModalComment";
 import styles from "./cardpost.module.css";
 
 import { Link } from "react-router";
-import { ThumbsUpButton } from "./ThumbsUpButton";
 import { http } from "../../api";
+import { ThumbsUpButton } from "./ThumbsUpButton";
+import { useAuth } from "../../hooks/useAuth";
 
 export const CardPost = ({ post }) => {
     const [likes, setLikes] = useState(post.likes);
+    // eslint-disable-next-line no-unused-vars
+    const [comments, setComments] = useState(post.comments);
+    const {isAuthenticated} = useAuth()
+
+    const handleNewComment = (comments) => {
+        setComments([comments, ...comments]);
+    };
 
     const handleLikeButton = () => {
         const token = localStorage.getItem("access_token")?.replace(/^"|"$/g, "");
 
-        http.post(`blog-posts/${post.id}/like`, {}, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then(() => {
+        http
+            .post(
+                `blog-posts/${post.id}/like`,
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                },
+            )
+            .then(() => {
                 setLikes((oldState) => oldState + 1);
-        });
+            });
     };
 
     return (
@@ -37,11 +51,11 @@ export const CardPost = ({ post }) => {
             <footer className={styles.footer}>
                 <div className={styles.actions}>
                     <div className={styles.action}>
-                        <ThumbsUpButton loading={false} onClick={handleLikeButton} />
+                        <ThumbsUpButton loading={false} onClick={handleLikeButton} disabled={!isAuthenticated}/>
                         <p>{likes}</p>
                     </div>
                     <div className={styles.action}>
-                        <ModalComment />
+                        <ModalComment onSuccess={handleNewComment} postId={post.id} />
                         <p>{post.comments.length}</p>
                     </div>
                 </div>
