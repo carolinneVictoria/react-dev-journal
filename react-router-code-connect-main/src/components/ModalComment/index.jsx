@@ -19,8 +19,6 @@ export const ModalComment = ({ isEditing, onSuccess, postId, defaultValue="", co
 
     const onSubmit = async (formData) => {
         const text = formData.get('text')
-        const token = localStorage.getItem('access_token')
-
         if (!text.trim()) return
 
         try {
@@ -28,10 +26,6 @@ export const ModalComment = ({ isEditing, onSuccess, postId, defaultValue="", co
             if (isEditing) {
                 http.patch(`/comments/${commentId}`, {
                     text
-                }, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
                 })
                     .then((response) => {
                         modalRef.current.closeModal()
@@ -41,10 +35,6 @@ export const ModalComment = ({ isEditing, onSuccess, postId, defaultValue="", co
             } else {
                 http.post(`/comments/post/${postId}`, {
                     text
-                }, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
                 })
                     .then((response) => {
                         modalRef.current.closeModal()
