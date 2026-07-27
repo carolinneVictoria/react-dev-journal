@@ -11,11 +11,11 @@ import { Button } from "../Button"
 import { http } from "../../api"
 import { useAuth } from "../../hooks/useAuth"
 
-export const ModalComment = ({ isEditing, onSuccess, postId }) => {
+export const ModalComment = ({ isEditing, onSuccess, postId, defaultValue="", commentId }) => {
     const modalRef = useRef(null)
     const [loading, setLoading] = useState(false)
-    const {isAuthenticated} = useAuth()
-    
+    const { isAuthenticated } = useAuth()
+
 
     const onSubmit = async (formData) => {
         const text = formData.get('text')
@@ -25,19 +25,33 @@ export const ModalComment = ({ isEditing, onSuccess, postId }) => {
 
         try {
             setLoading(true)
-            http.post(`/comments/post/${postId}`, {
-                text
-            }, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-                .then((response) => {
-                    modalRef.current.closeModal()
-                    onSuccess(response.data)
-                    setLoading(false)
+            if (isEditing) {
+                http.patch(`/comments/${commentId}`, {
+                    text
+                }, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
                 })
-
+                    .then((response) => {
+                        modalRef.current.closeModal()
+                        onSuccess(response.data)
+                        setLoading(false)
+                    })
+            } else {
+                http.post(`/comments/post/${postId}`, {
+                    text
+                }, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                    .then((response) => {
+                        modalRef.current.closeModal()
+                        onSuccess(response.data)
+                        setLoading(false)
+                    })
+            }
             modalRef.current.closeModal()
         } catch (error) {
             console.error('Erro ao criar/atualizar comentário:', error)
@@ -48,7 +62,7 @@ export const ModalComment = ({ isEditing, onSuccess, postId }) => {
             <Modal ref={modalRef}>
                 <form action={onSubmit}>
                     <Subheading>{isEditing ? 'Editar comentário:' : 'Deixe seu comentário sobre o post:'}</Subheading>
-                    <Textarea required rows={8} name="text" placeholder="Digite aqui..." />
+                    <Textarea required rows={8} name="text" placeholder="Digite aqui..." defaultValue={defaultValue}/>
                     <div className={styles.footer}>
                         <Button disabled={loading} type="submit">
                             {loading ? <Spinner /> : <>
