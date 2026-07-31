@@ -11,13 +11,18 @@ import { Button } from "../Button"
 import { http } from "../../api"
 import { useAuth } from "../../hooks/useAuth"
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 47c52f4 (feat: adicionando comentario de modal)
 // inicio do modal comment
 export const ModalComment = ({ isEditing }) => {
     const modalRef = useRef(null)
     const [loading, setLoading] = useState(false)
     const { isAuthenticated } = useAuth()
 
+
+    console.log(modalRef)
 
     console.log(modalRef)
 
