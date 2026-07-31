@@ -7,7 +7,6 @@ import { useAuth } from "../../hooks/useAuth";
 import { usePostInteractions } from "../../hooks/usePostInteractions";
 import { ThumbsUpButton } from "./ThumbsUpButton";
 
-// inicio do card post
 export const CardPost = ({ post }) => {
   const { isAuthenticated } = useAuth();
   const { likes, comments, handleNewComment, handleLikeButton } =
