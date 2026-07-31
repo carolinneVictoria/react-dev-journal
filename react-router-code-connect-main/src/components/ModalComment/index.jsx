@@ -11,11 +11,15 @@ import { Button } from "../Button"
 import { http } from "../../api"
 import { useAuth } from "../../hooks/useAuth"
 
-export const ModalComment = ({ isEditing, onSuccess, postId, defaultValue="", commentId }) => {
+
+// inicio do modal comment
+export const ModalComment = ({ isEditing }) => {
     const modalRef = useRef(null)
     const [loading, setLoading] = useState(false)
     const { isAuthenticated } = useAuth()
 
+
+    console.log(modalRef)
 
     const onSubmit = async (formData) => {
         const text = formData.get('text')
