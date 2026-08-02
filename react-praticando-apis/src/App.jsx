@@ -3,6 +3,7 @@ import WeatherCard from "./components/WeatherCard";
 import "./App.css";
 import { useEffect, useState } from "react";
 import ForecastList from "./components/ForecastList";
+import Loading from "./components/Loading";
 
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
@@ -11,12 +12,15 @@ function App() {
   const [weather, setWeather] = useState(null)
   const [forecast, setForecast] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [city, setCity] = useState("")
 
   useEffect(() => {
+    if (!city) return;
+
     async function fetchWeather() {
       setLoading(true)
       try {
-        const response = await fetch(`https://api.hgbrasil.com/weather?format=json-cors&key=${API_KEY}&city_name=Ortigueira, PR`);
+        const response = await fetch(`https://api.hgbrasil.com/weather?format=json-cors&key=${API_KEY}&city_name=${city}`);
         const data = await response.json();
 
         if(data.results) {
@@ -31,11 +35,11 @@ function App() {
       }
     }
     fetchWeather();
-  }, [])
+  }, [city])
 
   return (
     <div className="app-container">
-      <SearchBar />
+      <SearchBar onSearch={setCity} />
       {loading ? (
         <Loading />
       ) : weather ? (
