@@ -7,6 +7,7 @@ const ForecastItem = ({ date, min, max, condition, description }) => {
          ({date})
       </p>
       <img src={`./icons-weather/${condition}.svg`} alt={description} />
+      <span>{description}</span>
       <p className="forecast-temp">
         {min}/{max}°
       </p>
