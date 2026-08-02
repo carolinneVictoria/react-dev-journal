@@ -36,6 +36,7 @@ function App() {
         <>
           <h1>{weather.city}</h1>
           <WeatherCard weather={weather}/>
+          <h2>Previsão para os próximos dias:</h2>
           <ForecastList forecasts={forecast} />
         </>
       )}
