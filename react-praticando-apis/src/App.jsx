@@ -10,9 +10,11 @@ function App() {
 
   const [weather, setWeather] = useState(null)
   const [forecast, setForecast] = useState(null)
-  
+  const [loading, setLoading] = useState(false)
+
   useEffect(() => {
     async function fetchWeather() {
+      setLoading(true)
       try {
         const response = await fetch(`https://api.hgbrasil.com/weather?format=json-cors&key=${API_KEY}&city_name=Ortigueira, PR`);
         const data = await response.json();
@@ -24,6 +26,8 @@ function App() {
         }
       } catch (error) {
         console.error("Erro ao buscar dados da API", error)
+      } finally {
+        setLoading(false)
       }
     }
     fetchWeather();
@@ -32,13 +36,17 @@ function App() {
   return (
     <div className="app-container">
       <SearchBar />
-      {weather && (
+      {loading ? (
+        <Loading />
+      ) : weather ? (
         <>
           <h1>{weather.city}</h1>
           <WeatherCard weather={weather}/>
           <h2>Previsão para os próximos dias:</h2>
           <ForecastList forecasts={forecast} />
         </>
+      ) : (
+        <p>Digite uma cidade para buscar o clima.</p>
       )}
     </div>
   );
