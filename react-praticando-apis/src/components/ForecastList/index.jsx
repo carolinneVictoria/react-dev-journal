@@ -1,7 +1,7 @@
 import ForecastItem from "../ForecastItem";
 import "./styles.css";
 
-const ForecastList = ({ forecasts }) => {
+const ForecastList = ({ forecasts = [] }) => {
   return (
     <div className="forecast-list">
       {forecasts.map((forecast, index) => (
