@@ -6,6 +6,11 @@
   width: 328px;
 }
 
+.weather-card img {
+  width: 100px;
+  height: 100px;
+}
+
 .temperature {
   font-size: 40px;
   font-weight: bold;
@@ -26,8 +31,18 @@
   font-size: 14px;
 }
 
+.min-max img {
+  width: 40px;
+  height: 40px;
+}
+
 .humidity {
   margin-bottom: 16px;
+}
+
+.humidity img {
+  width: 40px;
+  height: 40px;
 }
 
 .humidity div {
