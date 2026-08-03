@@ -7,6 +7,7 @@ import FloatingActionButton from "../components/ui/FloatingActionButton";
 import WorkoutCard from "../components/ui/WorkoutCard";
 import ErrorMessage from "../components/ui/ErrorMessage";
 import { GET_FEED } from "../../database/graphql/query/feed";
+import DropDown from "../components/ui/DropDown";
 
 function Feed({ onNavigateToNewPost, onNavigateToProfile, onLogout }) {
   const [activeItem, setActiveItem] = useState("feed");
@@ -55,6 +56,8 @@ function Feed({ onNavigateToNewPost, onNavigateToProfile, onLogout }) {
             <h1 className="text-2xl font-bold text-brand-graphite mb-6 hidden md:block">
               Feed de Treinos
             </h1>
+
+            <DropDown options={[]} value={""} onChange={() => {}} placeholder="Todos" />
 
             {/* Loading State */}
             {loading && (
