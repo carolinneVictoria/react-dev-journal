@@ -13,24 +13,28 @@ function Feed({ onNavigateToNewPost, onNavigateToProfile, onLogout }) {
   const [activeItem, setActiveItem] = useState("feed");
   const [workouts, setWorkouts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
-  const { loading, error, data } = useQuery(GET_FEED);
-  const { loading: categoryLoading, error: categoryError, data: categoryData } = useQuery(GET_FEED_BY_CATEGORY)
+  const { loading, error, data } = useQuery(selectedCategory ? GET_FEED_BY_CATEGORY : GET_FEED, 
+    {
+      variables: selectedCategory ? { category: selectedCategory } : {},
+    }
+  );
 
   useEffect(() => {
-    const fetchWorkouts = async () => {
-      const normalizedWorkouts = data.map((item) => {
-        if (item.workout) {
-          return {
-            id: item.id,
-            ...item.workout,
-          };
-        }
-        return item;
-      });
-      setWorkouts(normalizedWorkouts);
-    };
-
-    fetchWorkouts();
+    if (data?.allFeeds) {
+      const fetchWorkouts = async () => {
+        const normalizedWorkouts = data.map((item) => {
+          if (item.workout) {
+            return {
+              id: item.id,
+              ...item.workout,
+            };
+          }
+          return item;
+        });
+        setWorkouts(normalizedWorkouts);
+      };
+      fetchWorkouts();
+    }
   }, [data]);
 
   const handleMenuClick = (itemId) => {
@@ -43,6 +47,13 @@ function Feed({ onNavigateToNewPost, onNavigateToProfile, onLogout }) {
       onLogout?.();
     }
   };
+
+  const categoryOptions = [
+    {value: '', label: 'Todos'},
+    {value: 'Corrida', label: 'Corrida'},
+    {value: 'Treino Intervalado', label: 'Treino Intervalado'},
+    {value: 'Caminhada', label: 'Caminhada'},
+  ]
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -59,7 +70,7 @@ function Feed({ onNavigateToNewPost, onNavigateToProfile, onLogout }) {
               Feed de Treinos
             </h1>
 
-            <DropDown options={[]} value={""} onChange={() => {}} placeholder="Todos" />
+            <DropDown options={categoryOptions} value={selectedCategory} onChange={setSelectedCategory} placeholder="Todos" className="mb-6" />
 
             {/* Loading State */}
             {loading && (
