@@ -4,39 +4,12 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import ForecastList from "./components/ForecastList";
 import Loading from "./components/Loading";
+import { useLocalWeather } from "./hooks/useLocalWeather";
 
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
 function App() {
-
-  const [weather, setWeather] = useState(null)
-  const [forecast, setForecast] = useState(null)
-  const [loading, setLoading] = useState(false)
-  const [city, setCity] = useState("")
-  const [error, setError] = useState(null); 
-
-  useEffect(() => {
-    if (!city) return;
-
-    async function fetchWeather() {
-      setLoading(true)
-      try {
-        const response = await fetch(`https://api.hgbrasil.com/weather?format=json-cors&key=${API_KEY}&city_name=${city}`);
-        const data = await response.json();
-
-        if(data.results) {
-          setWeather(data.results)
-          setForecast(data.results.forecast.slice(1, 4));
-          console.log(data.results)
-        }
-      } catch (error) {
-        console.error("Erro ao buscar dados da API", error)
-      } finally {
-        setLoading(false)
-      }
-    }
-    fetchWeather();
-  }, [city])
+  const { weather, error, loading } = useLocalWeather();
 
   return (
     <div className="app-container">
