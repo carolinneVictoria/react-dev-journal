@@ -48,6 +48,8 @@ function Feed({ onNavigateToNewPost, onNavigateToProfile, onLogout }) {
     }
   };
 
+  const handleDeleteWorkout = (id) => {}
+
   const categoryOptions = [
     {value: '', label: 'Todos'},
     {value: 'Corrida', label: 'Corrida'},
