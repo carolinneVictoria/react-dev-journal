@@ -18,17 +18,12 @@ As técnicas e tecnologias utilizadas pra isso são:
 - `Figma`: para prototipar o app
 - `HG Brasil`: site da API utilizada para obter informações do clima
 
-## 📁 Acesso ao projeto
-
-Você pode [acessar o código fonte do projeto inicial](https://github.com/NeiltonSeguins/4663-praticando-react-apis).
-
 ## 🛠️ Abrir e rodar o projeto
 
-Após baixar o projeto, você pode abrir com o seu editor de código favorito. Eu gosto de usar o [Visual Studio](https://code.visualstudio.com/), então recomendo que você também o use para ficarmos na mesma página. 
+Após baixar o projeto, você pode abrir com o seu editor de código.
 
 - **Baixe o projeto e extraia os arquivos para a pasta de sua preferência** 
-- Abra a pasta no Visual Studio Code
+- Abra a pasta no Visual Studio Code ou no editor de sua preferência.
 - Instale as dependências usando o `npm install`
 - Rode o app com o comando `npm run dev`
 - Seu app está rodando provavelmente em `http://localhost:5173/`
-
