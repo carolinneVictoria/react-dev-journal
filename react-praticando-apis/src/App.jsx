@@ -13,6 +13,7 @@ function App() {
   const [forecast, setForecast] = useState(null)
   const [loading, setLoading] = useState(false)
   const [city, setCity] = useState("")
+  const [error, setError] = useState(null); 
 
   useEffect(() => {
     if (!city) return;
@@ -45,6 +46,7 @@ function App() {
       ) : weather ? (
         <>
           <h1>{weather.city}</h1>
+          <span>Nascer do sol: {weather.sunrise} | Pôr do sol: {weather.sunset}</span>
           <WeatherCard weather={weather}/>
           <h2>Previsão para os próximos dias:</h2>
           <ForecastList forecasts={forecast} />
