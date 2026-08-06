@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
 import BottomNavigation from "../components/layout/BottomNavigation";
 import Header from "../components/layout/Header";
@@ -18,6 +18,43 @@ function Feed({ onNavigateToNewPost, onNavigateToProfile, onLogout }) {
       variables: selectedCategory ? { category: selectedCategory } : {},
     }
   );
+
+  const [deleteFeedPost] = useMutation(DELETE_FEED_POST, {
+    refetchQueries: [{ query: GET_FEED }, { query: GET_FEED_BY_CATEGORY }],
+    update(cache, { data: { deleteFeed } }) {
+      try {
+        const existingFeed = cache.readQuery({ query: GET_FEED });
+        if (existingFeed) {
+          cache.writeQuery({
+            query: GET_FEED,
+            data: {
+              feed: existingFeed.feed.filter((post) => post.id !== deleteFeed.id),
+            },
+          });
+        }
+      } catch (error) {
+        console.error('Error updating cache after deletion:', error);
+      } 
+
+      try {
+        const existingCategoryFeed = cache.readQuery({ 
+          query: GET_FEED_BY_CATEGORY, 
+          variables: { category: selectedCategory } 
+        });
+        if (existingCategoryFeed) {
+          cache.writeQuery({
+            query: GET_FEED_BY_CATEGORY,
+            variables: { category: selectedCategory },
+            data: {
+              feedByCategory: existingCategoryFeed.feedByCategory.filter((post) => post.id !== deleteFeed.id),
+            },
+          });
+        }
+      } catch (error) {
+        console.error('Error updating category cache after deletion:', error);
+      }
+    }
+  });
 
   useEffect(() => {
     if (data?.allFeeds) {
@@ -48,7 +85,9 @@ function Feed({ onNavigateToNewPost, onNavigateToProfile, onLogout }) {
     }
   };
 
-  const handleDeleteWorkout = (id) => {}
+  const handleDelete = (id) => {
+    deleteFeedPost({ variables: { id } })
+  }
 
   const categoryOptions = [
     {value: '', label: 'Todos'},
