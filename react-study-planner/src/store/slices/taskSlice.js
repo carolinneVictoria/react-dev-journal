@@ -47,7 +47,6 @@ const taskSlice = createSlice({
 });
 
 export const { addTask, toggleTaskComplete, editTask, deleteTask } = taskSlice.actions;
-
 export const selectTasks = (state) => state.tasks.tasks;
 export const selectPendingTasks = (state) => state.tasks.tasks.filter(task => !task.completed)
 export const selectCompletedTasks = (state) => state.tasks.tasks.filter(task => task.completed)
