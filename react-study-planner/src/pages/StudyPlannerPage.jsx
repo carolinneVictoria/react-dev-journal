@@ -4,10 +4,11 @@ import { useTheme } from '../contexts/ThemeContext'
 import { EmptyState, ThemeToggle } from '../components/UI'
 import { AddTaskModal, EditTaskModal } from '../components/Modal'
 import { TaskSection } from '../components/Task'
-import { useSelector } from 'react-redux'
-import { selectCompletedTasks, selectPendingTasks, selectTasks } from '../store/slices/taskSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { addTask, deleteTask, editTask, selectCompletedTasks, selectPendingTasks, selectTasks, toggleTaskComplete } from '../store/slices/taskSlice'
 
 function StudyPlannerPage() {
+  const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
   const [taskToEdit, setTaskToEdit] = useState(null)
@@ -16,15 +17,6 @@ function StudyPlannerPage() {
   const pendingTasks = useSelector(selectPendingTasks)
   const completedTaks = useSelector(selectCompletedTasks);
 
-  //CONTEXT API
-  const {
-    addTask,
-    toggleTaskComplete,
-    editTask,
-    deleteTask,
-    getPendingTasks,
-    getCompletedTasks
-  } = useTasks()
 
   const handleAddTask = () => {
     setIsModalOpen(true)
@@ -35,11 +27,11 @@ function StudyPlannerPage() {
   }
 
   const handleAddNewTask = (newTask) => {
-    addTask(newTask)
+    dispatch(addTask(newTask))
   }
 
   const handleToggleComplete = (taskId) => {
-    toggleTaskComplete(taskId)
+    dispatch(toggleTaskComplete(taskId))
   }
 
   const handleEditTask = (taskId) => {
@@ -54,11 +46,11 @@ function StudyPlannerPage() {
   }
 
   const handleSaveEditTask = (taskId, updatedTask) => {
-    editTask(taskId, updatedTask)
+    dispatch(editTask(taskId, updatedTask))
   }
 
   const handleDeleteTask = (taskId) => {
-    deleteTask(taskId)
+    dispatch(deleteTask(taskId))
   }
 
   const theme = useTheme()
