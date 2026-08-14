@@ -4,13 +4,20 @@ import { useTheme } from '../contexts/ThemeContext'
 import { EmptyState, ThemeToggle } from '../components/UI'
 import { AddTaskModal, EditTaskModal } from '../components/Modal'
 import { TaskSection } from '../components/Task'
+import { useSelector } from 'react-redux'
+import { selectCompletedTasks, selectPendingTasks, selectTasks } from '../store/slices/taskSlice'
 
 function StudyPlannerPage() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
   const [taskToEdit, setTaskToEdit] = useState(null)
+  // REDUX
+  const tasks = useSelector(selectTasks);
+  const pendingTasks = useSelector(selectPendingTasks)
+  const completedTaks = useSelector(selectCompletedTasks);
+
+  //CONTEXT API
   const {
-    tasks,
     addTask,
     toggleTaskComplete,
     editTask,
@@ -54,8 +61,6 @@ function StudyPlannerPage() {
     deleteTask(taskId)
   }
 
-  const pendingTasks = getPendingTasks()
-  const completedTasks = getCompletedTasks()
   const theme = useTheme()
 
   return (
