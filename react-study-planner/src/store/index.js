@@ -5,6 +5,6 @@ import themeReducer from './slices/themeSlice'
 export const store = configureStore({
   reducer: {
     tasks: tasksReducer,
-    theme: themereducer,
+    theme: themeReducer,
   },
 })
