@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useTasks } from '../contexts/TaskContext'
 import { useTheme } from '../contexts/ThemeContext'
 import { EmptyState, ThemeToggle } from '../components/UI'
 import { AddTaskModal, EditTaskModal } from '../components/Modal'
@@ -15,7 +14,7 @@ function StudyPlannerPage() {
   // REDUX
   const tasks = useSelector(selectTasks);
   const pendingTasks = useSelector(selectPendingTasks)
-  const completedTaks = useSelector(selectCompletedTasks);
+  const completedTasks = useSelector(selectCompletedTasks);
 
 
   const handleAddTask = () => {
