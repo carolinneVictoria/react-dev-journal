@@ -1,7 +1,11 @@
-import { useTheme } from '../../contexts/ThemeContext'
+import { useDispatch, useSelector } from 'react-redux'
+import { toggleTheme } from '../../store/slices/themeSlice'
 
 function ThemeToggle() {
-  const { isDark, toggleTheme } = useTheme()
+  const dispatch = useDispatch();
+  const { theme } = useSelector(state => state.theme)
+
+  const isDark = theme === 'dark'
 
   return (
     <button
