@@ -23,7 +23,8 @@ const analyticSlice = createSlice({
 
             state.overdueTasks = tasks.filter(task => {
                 if (task.completed || !task.date) return false;
-                const taskDate = new Date(task.date);
+                const [day, month, year] = task.date.split('/');
+                const taskDate = new Date(`${year}-${month}-${day}T00:00:00`);
                 return taskDate < currentDate;
             }).length
 
