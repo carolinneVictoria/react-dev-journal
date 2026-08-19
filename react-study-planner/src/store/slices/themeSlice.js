@@ -20,7 +20,7 @@ const themeSlice = createSlice({
 export const { setTheme, toggleTheme } = themeSlice.actions;
 
 export const selectTheme = (state) => {
-    const isDarkTheme = state.theme.theme;
+    const isDarkTheme = state.theme.theme === 'dark';
     return {
         isDark: isDarkTheme,
         background: isDarkTheme 
