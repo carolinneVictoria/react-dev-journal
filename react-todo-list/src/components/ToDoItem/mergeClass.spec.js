@@ -1,3 +1,5 @@
+import mergeClass from "./mergeClass";
+
 describe("./mergeClass.js", () => {
     test('deve retornar a classe do todo-item quando nao estiver completo', () => {
         const isItemCompleted = false;
